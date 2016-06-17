@@ -1,0 +1,24 @@
+[33mcommit 2d6a10309d3f46a8bcb7cb65b2433cdb4cec95e5[m
+Merge: 862e7fd e6679f9
+Author: vinatgit <vinayakaggarwal97@gmail.com>
+Date:   Fri Jun 17 08:31:10 2016 +0530
+
+    Merge branch 'master' of https://www.github.com/vinatgit/Django-first
+
+[33mcommit e6679f916de8be6a71b88d9952ae457acaaf2a62[m
+Author: vinatgit <vinayakaggarwal97@gmail.com>
+Date:   Fri Jun 17 08:06:15 2016 +0530
+
+    Delete README.md
+
+[33mcommit 862e7fde3c0c7810cb71e16c140da17b493fe4b2[m
+Author: vinatgit <vinayakaggarwal97@gmail.com>
+Date:   Fri Jun 17 08:01:49 2016 +0530
+
+    First commit
+
+[33mcommit 71d709be70821b1b5c6bc2f4daf177efadf4b281[m
+Author: vinatgit <vinayakaggarwal97@gmail.com>
+Date:   Fri Jun 10 10:28:22 2016 +0530
+
+    Initial commit
