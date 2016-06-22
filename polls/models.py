@@ -1,5 +1,8 @@
 from __future__ import unicode_literals
 
+import datetime
+
+from django.utils import timezone
 from django.db import models
 
 class Question(models.Model):
@@ -7,6 +10,9 @@ class Question(models.Model):
         return self.question_text
     question_text=models.CharField(max_length=200)
     pub_date=models.DateTimeField('date published')
+    
+    def was_published_recently(self):
+    	return timezone.now()-datetime.timedelta(days=1)<=self.pub_date<=timezone.now()
 
 class Choice(models.Model):
     def __str__(self):
