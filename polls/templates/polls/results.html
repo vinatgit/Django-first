@@ -1,3 +1,12 @@
+{% extends "base.html" %}
+{%block js%}
+{%if not user.is_authenticated %}
+<script>
+	window.location="/";
+</script>
+{%endif%}
+{%endblock%}
+{%block content%}
 <h1>{{question.question_text}}</h1>
 
 <ul>
@@ -7,3 +16,4 @@
 {% endfor %}
 </ul>
 <a href="{% url 'polls:detail' question.id %}">Vote again?</a>
+{%endblock%}

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<div id="nav">
+		{% if user.is_authenticated %}
+		<a href="/polls/">Home</a> |
+		Welcome {{user.username}} |
+		<a href="/logout/">Log out</a>
+		{% else %}
+		<a href="/">Login</a> |
+		<a href="/register/">Register</a>
+		{% endif %}
+		</div>
+		{%block js%}{%endblock%}
+		<h1> {% block head %}{% endblock %}</h1>
+		{% block content %}{% endblock %}
+	</body>
+</html>

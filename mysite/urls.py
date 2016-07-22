@@ -15,8 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import include,url
 from django.contrib import admin
+from django.contrib.auth import views
+from polls.forms import RegistrationForm
+from polls.views import register_page
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^polls/',include('polls.urls')), 
+    url(r'^polls/',include('polls.urls')),
+    url(r'^$',views.login),
+    url(r'^register/$',register_page),
+    url(r'^logout/$',views.logout,{'next_page':'/'}),
 ]

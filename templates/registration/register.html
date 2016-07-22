@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block js %}
+{% if user.is_authenticated %}
+<script>
+	window.location="/polls/";
+</script>
+{%endif%}
+{%endblock%}
+{% block head %} User Registration {% endblock %}
+{% block content %}
+<form method="post" action=".">
+{{form.as_p}}	
+<input type="submit" value="Register"/>
+{% csrf_token %}
+</form>
+{% endblock %}

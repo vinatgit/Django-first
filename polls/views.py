@@ -1,10 +1,11 @@
 from django.http import Http404
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404,render_to_response
 from django.http import HttpResponseRedirect,HttpResponse
 from django.core.urlresolvers import reverse
-from django.template import loader
+from django.template import loader,RequestContext
 from django.views import generic
 from django.utils import timezone
+from polls.forms import *
 
 from .models import Question,Choice
 
@@ -40,3 +41,13 @@ def vote(request,question_id):
 class ResultsView(generic.DetailView):
 	model=Question
 	template_name='polls/results.html'
+
+def register_page(request):
+	if request.method=='POST':
+		form=RegistrationForm(request.POST)
+		if form.is_valid():
+			user=User.objects.create_user(username=form.cleaned_data['username'],password=form.cleaned_data['password1'])
+			return HttpResponseRedirect('/')
+	form=RegistrationForm()
+	variables=RequestContext(request,{'form':form})
+	return render_to_response('registration/register.html',variables)
