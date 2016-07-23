@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 
 import datetime
 
+from django.contrib.auth.models import User
 from django.utils import timezone
 from django.db import models
 
@@ -23,5 +24,8 @@ class Choice(models.Model):
     question=models.ForeignKey(Question,on_delete=models.CASCADE)
     choice_text=models.CharField(max_length=200)
     votes=models.IntegerField(default=0)
-	
+
+class Voter(models.Model):
+    question=models.ForeignKey(Question)
+    user=models.ForeignKey(User)
 #Create your models here.

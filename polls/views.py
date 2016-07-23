@@ -7,7 +7,7 @@ from django.views import generic
 from django.utils import timezone
 from polls.forms import *
 
-from .models import Question,Choice
+from .models import Question,Choice,Voter
 
 class IndexView(generic.ListView):
 	template_name='polls/index.html'
@@ -26,6 +26,11 @@ class DetailView(generic.DetailView):
 
 def vote(request,question_id):
 	question=get_object_or_404(Question,pk=question_id)
+	if(Voter.objects.filter(question_id=question_id,user_id=request.user.id).exists()):
+		return render(request,"polls/detail.html",{
+			'question':question,
+			'error_message':"You have already voted for this question",
+		})
 	try:
 		selected_choice=question.choice_set.get(pk=request.POST['choice'])
 	except(KeyError,Choice.DoesNotExist):
@@ -36,6 +41,8 @@ def vote(request,question_id):
 	else:
 		selected_choice.votes+=1
 		selected_choice.save()
+		v=Voter(user=request.user,question=question)
+		v.save()
 		return HttpResponseRedirect(reverse('polls:results',args=(question.id,)))
 
 class ResultsView(generic.DetailView):
